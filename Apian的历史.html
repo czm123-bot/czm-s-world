@@ -7,15 +7,18 @@
         body{background: #d6ffd4}
         a:hover { color: red; }
         a:active { color: yellow; }
+        img { max-width: 100%; height: auto; }
     </style>
     <title>A pian的历史</title>
-    common.css(<link rel="stylesheet" href="common.css">)
+    <link rel="stylesheet" href="common.css">
 </head>
 <body>
 <div class="top-header">
     <div class="top-fixed-img">
-        <img src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763123398362.webp" alt="A pian100%"
-             onerror="this.src='https://via.placeholder.com/120';">
+        <picture>
+            <source srcset="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763123398362.webp" type="image/webp">
+            <img src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763123398362.jpg" alt="A pian100%" onerror="this.src='https://via.placeholder.com/120';">
+        </picture>
     </div>
     <div class="big-text">A pian100%</div>
 </div>

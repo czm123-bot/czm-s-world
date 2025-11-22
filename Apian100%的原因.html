@@ -7,15 +7,18 @@
         a:hover { color: red; }
         a:active { color: yellow; }
         body{background: #d6ffd4}
+        img { max-width: 100%; height: auto; }
     </style>
-    common.css(<link rel="stylesheet" href="common.css">)
+    <link rel="stylesheet" href="common.css">
     <title>A pian100%的原因</title>
 </head>
 <body>
 <div class="top-header">
     <div class="top-fixed-img">
-        <img src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763123398362.webp" alt="A pian100%"
-             onerror="this.src='https://via.placeholder.com/120';">
+        <picture>
+            <source srcset="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763123398362.webp" type="image/webp">
+            <img src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763123398362.jpg" alt="A pian100%" onerror="this.src='https://via.placeholder.com/120';">
+        </picture>
     </div>
     <div class="big-text">A pian100%</div>
 </div>
@@ -41,7 +44,7 @@
     <p><audio src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/起风了-买辣椒也用券.mp3" controls>也许你需要它。</audio></p>
 </div>
 
-<<div class="button-group">
+<div class="button-group">
     <button onclick="window.history.back()">回到上一页</button><br>
     <button><a href="index.html" style="text-decoration: none;"><h3>点击返回至首页</h3></a></button><br>
     <button><a href="Apian的惊喜.html " style= "text-decoration: none;"><h3>A pian的惊喜</h3></a></button><br>
