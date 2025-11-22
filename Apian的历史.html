@@ -35,9 +35,11 @@
     <p>在很久很久以前，世界上并没有A pian，但是……</p>
     <h3>有一天，ta诞生了！</h3>
     <div class="video-container">
-        <video id="history-video" controls  muted playsinline >
-            <source src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/en-history.mp4" type="video/mp4">
-            您的浏览器不支持视频播放，请点击<a href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/en-history.mp4">下载视频</a>
+        <video src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/en-history.mp4"
+               controls width="800"
+               muted
+               poster="https://picsum.photos/800/450">
+            您的浏览器不支持视频播放，请更新浏览器或点击链接查看：<a href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/en-history.mp4" target="_blank">视频链接</a>
         </video>
     </div>
     <p>然后，当ta传到中国后，掀起了滔天巨浪，A pian诞生了！</p>
@@ -46,20 +48,11 @@
     <p>当然，我们会努力的！</p>
 </div>
 
-<script>
-    const video = document.getElementById('history-video');
-    video.addEventListener('ended', function() {
-        setTimeout(() => {
-            window.location.href = 'page1.html';
-        }, 2000);
-    });
-</script>
-
 <div class="button-group">
     <button onclick="window.history.back()">回到上一页</button><br>
     <button><a href="index.html" style="text-decoration: none;"><h3>点击返回至首页</h3></a></button><br>
     <button><a href="Apian的惊喜.html " style= "text-decoration: none;"><h3>A pian的惊喜</h3></a></button><br>
-    <button><a href="Apian100%25的原因.html "style="text-decoration: none;"><h3>A pian100%的原因</h3></a></button><br>
+    <button><a href="Apian100%25_reason.html "style="text-decoration: none;"><h3>A pian100%的原因</h3></a></button><br>
     <button><a href="关于我们.html" style="text-decoration: none;"><h3>关于我们</h3></a></button><br>
 </div>
 
