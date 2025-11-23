@@ -22,94 +22,98 @@ a:active {
 img {
     max-width: 100%;
     height: auto;
+    display: inline-block;
 }
 .top-header {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
     padding: 15px 20px;
     width: 100%;
-    flex-wrap: wrap;
-    margin-bottom: 30px;
+    flex-wrap: nowrap;
+    margin-bottom: 20px;
     justify-content: flex-start;
 }
 .big-text {
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     font-weight: bold;
     color: #333;
     white-space: nowrap;
 }
 .top-fixed-img {
-    width: 100%;
-    height: 200px;
+    width: auto;
+    height: 80px;
     overflow: hidden;
 }
 .top-fixed-img img {
-    width: 100%;
+    width: auto;
     height: 100%;
     object-fit: contain;
 }
 .text-content {
-    padding: 0 20px;
+    padding: 0 15px;
     max-width: 1200px;
     margin: 0 auto;
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 1.8;
 }
 .text-content h1 {
-    font-size: 1.8rem;
-    margin: 25px 0 15px;
+    font-size: 1.6rem;
+    margin: 20px 0 12px;
 }
 .text-content h2 {
-    font-size: 1.5rem;
-    margin: 20px 0 10px;
+    font-size: 1.3rem;
+    margin: 18px 0 8px;
 }
 .separator {
-    height: 4px;
+    height: 3px;
     background-color: #606060;
-    margin: 20px 0;
+    margin: 15px 0;
 }
 .footer {
-    padding: 0 20px;
-    margin-top: 30px;
+    padding: 0 15px;
+    margin-top: 25px;
     max-width: 1200px;
-    margin: 30px auto 0;
-    padding-bottom: 20px;
+    margin: 25px auto 0;
+    padding-bottom: 15px;
 }
 .button-group {
-    padding: 0 20px;
-    margin: 20px auto;
+    padding: 0 15px;
+    margin: 15px auto;
     max-width: 1200px;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 8px;
     align-items: center;
 }
 .button-group button {
-    padding: 8px 16px;
+    padding: 6px 12px;
     cursor: pointer;
     background: #fff;
     border: 2px solid #333;
     border-radius: 4px;
-    font-size: 1rem;
+    font-size: 0.95rem;
 }
 .button-group button a {
     color: #333;
     text-decoration: none;
 }
 .image-container {
-    margin: 20px 0;
-    padding: 10px;
+    margin: 15px 0;
+    padding: 8px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    width: 100%;
-    height: auto;
-    min-height: 120px;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.image-container .link {
+    flex-shrink: 0;
 }
 .image-container .target-img {
-    width: 100%;
-    height: 100%;
+    max-width: calc(100% - 120px);
+    height: auto;
     object-fit: contain;
 }
 .link {
@@ -119,7 +123,7 @@ img {
     text-decoration: underline;
 }
 .video-container {
-    margin: 20px 0;
+    margin: 15px 0;
     width: 100%;
 }
 .video-container video {

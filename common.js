@@ -1,27 +1,23 @@
 document.addEventListener("DOMContentLoaded", function() {
     const links = document.querySelectorAll('.link');
     links.forEach(link => {
-        link.dataset.imgShown = "false";
-
         link.addEventListener('click', function() {
             const container = this.parentElement;
             const imgSources = container.querySelectorAll('.target-img');
             const webpSrc = this.getAttribute('data-img-webp');
             const jpgSrc = this.getAttribute('data-img-jpg');
-            const isCurrentlyShown = this.dataset.imgShown === "true";
+            const currentDisplay = imgSources[1].style.display;
 
-            if (isCurrentlyShown) {
+            if (currentDisplay === 'inline-block') {
                 imgSources.forEach(img => {
                     img.style.display = 'none';
                 });
-                this.dataset.imgShown = "false";
             } else {
                 imgSources[0].setAttribute('srcset', webpSrc);
                 imgSources[1].setAttribute('src', jpgSrc);
                 imgSources.forEach(img => {
-                    img.style.display = 'block';
+                    img.style.display = 'inline-block';
                 });
-                this.dataset.imgShown = "true";
             }
         });
     });
@@ -53,3 +49,8 @@ document.addEventListener("DOMContentLoaded", function() {
         document.head.appendChild(preloadElem);
     });
 });
+
+
+
+
+
