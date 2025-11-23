@@ -26,11 +26,11 @@ img {
     display: flex;
     align-items: center;
     gap: 20px;
-    padding: 15px;
+    padding: 15px 20px;
     width: 100%;
     flex-wrap: wrap;
     margin-bottom: 30px;
-    justify-content: center;
+    justify-content: flex-start;
 }
 .big-text {
     font-size: clamp(2rem, 5vw, 3.5rem);
