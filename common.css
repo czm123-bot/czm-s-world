@@ -35,7 +35,7 @@ img {
 }
 .top-fixed-img {
     width: auto;
-    height: 60px;
+    height: 100px;
     overflow: hidden;
 }
 .top-fixed-img img {
@@ -44,7 +44,7 @@ img {
     object-fit: contain;
 }
 .big-text {
-    font-size: clamp(1.2rem, 3vw, 2rem);
+    font-size: clamp(2rem, 6vw, 3.5rem);
     font-weight: bold;
     color: #333;
     white-space: nowrap;
