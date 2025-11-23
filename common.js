@@ -1,39 +1,43 @@
 document.addEventListener("DOMContentLoaded", function() {
     const links = document.querySelectorAll('.link');
     links.forEach(link => {
+        link.dataset.imgShown = "false";
+
         link.addEventListener('click', function() {
             const container = this.parentElement;
             const imgSources = container.querySelectorAll('.target-img');
             const webpSrc = this.getAttribute('data-img-webp');
             const jpgSrc = this.getAttribute('data-img-jpg');
-            const isVisible = imgSources[1].style.display !== 'none';
+            const isCurrentlyShown = this.dataset.imgShown === "true";
 
-            if (isVisible) {
+            if (isCurrentlyShown) {
                 imgSources.forEach(img => {
                     img.style.display = 'none';
                 });
+                this.dataset.imgShown = "false";
             } else {
                 imgSources[0].setAttribute('srcset', webpSrc);
                 imgSources[1].setAttribute('src', jpgSrc);
                 imgSources.forEach(img => {
                     img.style.display = 'block';
                 });
+                this.dataset.imgShown = "true";
             }
         });
     });
+
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('href');
-            if (targetId !== '#') {
+            if (targetId !== '#' && document.querySelector(targetId)) {
                 document.querySelector(targetId).scrollIntoView({
                     behavior: 'smooth'
                 });
             }
         });
     });
-});
-document.addEventListener('DOMContentLoaded', () => {
+
     const preloadLinks = [
         'index.html',
         'Apian的历史.html',
@@ -41,11 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
         'Apian100%25_reason.html',
         '关于我们.html'
     ];
-
     preloadLinks.forEach(link => {
-        const preload = document.createElement('link');
-        preload.rel = 'prefetch';
-        preload.href = link;
-        document.head.appendChild(preload);
+        const preloadElem = document.createElement('link');
+        preloadElem.rel = 'prefetch';
+        preloadElem.href = link;
+        preloadElem.as = 'document';
+        document.head.appendChild(preloadElem);
     });
 });
