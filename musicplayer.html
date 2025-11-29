@@ -20,12 +20,12 @@
     <button id="next-btn">下一首 →</button>
   </div>
   <div class="music-list">
-    <div class="list-item active" data-src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129121118_001.mp3" data-title="歌曲1" data-singer="歌手A">1. 阿刁 - 张韶涵</div>
-    <div class="list-item" data-src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129121257_001.mp3" data-title="歌曲2" data-singer="歌手B">2. 光年之外 - 邓紫棋</div>
-    <div class="list-item" data-src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129122044_001.mp3" data-title="歌曲3" data-singer="歌手C">3. 青花瓷 - 周杰伦</div>
-    <div class="list-item" data-src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129122054_001.mp3" data-title="歌曲4" data-singer="歌手D">4. 晴天 - 周杰伦</div>
-    <div class="list-item" data-src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129122116_001.mp3" data-title="歌曲5" data-singer="歌手E">5. 反方向的钟 - 周杰伦</div>
-    <div class="list-item" data-src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129122105_001.mp3" data-title="歌曲5" data-singer="歌手E">5. 稻香 - 周杰伦</div>
+    <div class="list-item active" data-src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129121118_001.mp3" data-title="阿刁" data-singer="张韶涵">1. 阿刁 - 张韶涵</div>
+    <div class="list-item" data-src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129121257_001.mp3" data-title="光年之外" data-singer="邓紫棋">2. 光年之外 - 邓紫棋</div>
+    <div class="list-item" data-src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129122044_001.mp3" data-title="青花瓷" data-singer="周杰伦">3. 青花瓷 - 周杰伦</div>
+    <div class="list-item" data-src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129122054_001.mp3" data-title="晴天" data-singer="周杰伦">4. 晴天 - 周杰伦</div>
+    <div class="list-item" data-src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129122116_001.mp3" data-title="反方向的钟" data-singer="周杰伦">5. 反方向的钟 - 周杰伦</div>
+    <div class="list-item" data-src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129122105_001.mp3" data-title="稻香" data-singer="周杰伦">6. 稻香 - 周杰伦</div>
   </div>
   <audio id="audio-player" preload="metadata">
     <source src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129121118_001.mp3" type="audio/mpeg">
@@ -127,91 +127,95 @@
 </style>
 
 <script>
-  const audio = document.getElementById('audio-player');
-  const playBtn = document.getElementById('play-btn');
-  const prevBtn = document.getElementById('prev-btn');
-  const nextBtn = document.getElementById('next-btn');
-  const progress = document.getElementById('progress');
-  const currentTimeEl = document.getElementById('current-time');
-  const totalTimeEl = document.getElementById('total-time');
-  const musicTitle = document.querySelector('.music-title');
-  const musicSinger = document.querySelector('.music-singer');
-  const listItems = document.querySelectorAll('.list-item');
-  let currentIndex = 0;
+  document.addEventListener('DOMContentLoaded', function() {
+    const audio = document.getElementById('audio-player');
+    const playBtn = document.getElementById('play-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const progress = document.getElementById('progress');
+    const currentTimeEl = document.getElementById('current-time');
+    const totalTimeEl = document.getElementById('total-time');
+    const musicTitle = document.querySelector('.music-title');
+    const musicSinger = document.querySelector('.music-singer');
+    const listItems = document.querySelectorAll('.list-item');
+    let currentIndex = 0;
 
-  listItems.forEach((item, index) => {
-    item.addEventListener('click', () => {
-      currentIndex = index;
+    listItems.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        currentIndex = index;
+        loadMusic();
+        playMusic();
+      });
+    });
+
+    playBtn.addEventListener('click', () => {
+      audio.paused ? playMusic() : pauseMusic();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + listItems.length) % listItems.length;
       loadMusic();
       playMusic();
     });
-  });
 
-  playBtn.addEventListener('click', () => {
-    audio.paused ? playMusic() : pauseMusic();
-  });
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % listItems.length;
+      loadMusic();
+      playMusic();
+    });
 
-  prevBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + listItems.length) % listItems.length;
+    audio.addEventListener('timeupdate', updateProgress);
+    audio.addEventListener('loadedmetadata', () => {
+      totalTimeEl.textContent = formatTime(audio.duration);
+    });
+
+    audio.addEventListener('ended', () => {
+      nextBtn.click();
+    });
+
+    progress.addEventListener('input', () => {
+      const seekTime = (progress.value / 100) * audio.duration;
+      audio.currentTime = seekTime;
+    });
+
+    function loadMusic() {
+      const activeItem = document.querySelector('.list-item.active');
+      if (activeItem) activeItem.classList.remove('active');
+      listItems[currentIndex].classList.add('active');
+      const src = listItems[currentIndex].dataset.src;
+      const title = listItems[currentIndex].dataset.title;
+      const singer = listItems[currentIndex].dataset.singer;
+      audio.src = src;
+      musicTitle.textContent = `当前播放：${title}`;
+      musicSinger.textContent = singer;
+    }
+
+    function playMusic() {
+      audio.play().catch(e => {
+        console.log('播放失败:', e);
+      });
+      playBtn.textContent = '暂停';
+    }
+
+    function pauseMusic() {
+      audio.pause();
+      playBtn.textContent = '播放';
+    }
+
+    function updateProgress() {
+      if (isNaN(audio.duration)) return;
+      const percent = (audio.currentTime / audio.duration) * 100;
+      progress.value = percent;
+      currentTimeEl.textContent = formatTime(audio.currentTime);
+    }
+
+    function formatTime(time) {
+      if (isNaN(time)) return '00:00';
+      const minutes = Math.floor(time / 60);
+      const seconds = Math.floor(time % 60);
+      return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+
     loadMusic();
-    playMusic();
   });
-
-  nextBtn.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % listItems.length;
-    loadMusic();
-    playMusic();
-  });
-
-  audio.addEventListener('timeupdate', updateProgress);
-  audio.addEventListener('loadedmetadata', () => {
-    totalTimeEl.textContent = formatTime(audio.duration);
-  });
-
-  audio.addEventListener('ended', () => {
-    nextBtn.click();
-  });
-
-  progress.addEventListener('input', () => {
-    const seekTime = (progress.value / 100) * audio.duration;
-    audio.currentTime = seekTime;
-  });
-
-  function loadMusic() {
-    const activeItem = document.querySelector('.list-item.active');
-    if (activeItem) activeItem.classList.remove('active');
-    listItems[currentIndex].classList.add('active');
-    const src = listItems[currentIndex].dataset.src;
-    const title = listItems[currentIndex].dataset.title;
-    const singer = listItems[currentIndex].dataset.singer;
-    audio.src = src;
-    musicTitle.textContent = `当前播放：${title}`;
-    musicSinger.textContent = singer;
-  }
-
-  function playMusic() {
-    audio.play();
-    playBtn.textContent = '暂停';
-  }
-
-  function pauseMusic() {
-    audio.pause();
-    playBtn.textContent = '播放';
-  }
-
-  function updateProgress() {
-    if (isNaN(audio.duration)) return;
-    const percent = (audio.currentTime / audio.duration) * 100;
-    progress.value = percent;
-    currentTimeEl.textContent = formatTime(audio.currentTime);
-  }
-
-  function formatTime(time) {
-    if (isNaN(time)) return '00:00';
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-  }
-
-  loadMusic();
 </script>
