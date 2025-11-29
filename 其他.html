@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <link rel="icon" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1764384806579.webp" type="image/webp" sizes="32x32">
+  <link rel="icon" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1764384806579.png" type="image/png" sizes="32x32">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <link rel="stylesheet" href="common.css">
+  <title>TDCT的专属娱乐：Music</title>
+</head>
+<body>
+<div class="top-header">
+  <div class="top-fixed-img">
+    <picture>
+      <source srcset="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1764384759500.webp" type="image/webp">
+      <img src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1764384759500.jpg" alt="TDCT" onerror="this.src='https://via.placeholder.com/120';">
+    </picture>
+  </div>
+  <div class="big-text">TDCT</div>
+</div>
+<div class="top-header">
+  <div class="top-fixed-img">
+    <picture>
+      <source srcset="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763123398362.webp" type="image/webp">
+      <img src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763123398362.jpg" alt="TDCT" onerror="this.src='https://via.placeholder.com/120';">
+    </picture>
+  </div>
+  <div class="big-text">TDCT</div>
+</div>
+
+<div class="button-group">
+  <button><a href="index.html" style="text-decoration: none;">返回至首页</a></button>
+  <button onclick="window.history.back()">回到上一页</button><br>
+</div>
+
+<div class="text-content">
+  <div id="music-player-container"></div>
+  <script>
+    fetch('musicplayer.html')
+            .then(response => response.text())
+            .then(html => {
+              document.getElementById('music-player-container').innerHTML = html;
+            });
+  </script>
+</div>
+
+<div class="button-group">
+  <button onclick="window.history.back()">回到上一页</button><br>
+  <button><a href="index.html" style="text-decoration: none;"><h3>点击返回至首页</h3></a></button><br>
+  <button><a href="Apian的惊喜.html " style= "text-decoration: none;"><h3>A pian的惊喜</h3></a></button><br>
+  <button><a href="Apian的历史.html " style="text-decoration: none;"><h3>A pian的历史</h3></a></button><br>
+  <button><a href="Apian100%25_reason.html" style="text-decoration: none;"><h3>Apian100%的原因</h3></a></button><br>
+  <button><a href="关于我们.html" style="text-decoration: none;"><h3>关于我们</h3></a></button><br>
+  <button><a href="TDCT.html " style="text-decoration: none;"><h3>关于TDCT</h3></a></button><br>
+  <button><a href="v.html " style="text-decoration: none;"><h3>TDCT的专属娱乐：Video</h3></a></button><br>
+
+
+</div>
+
+<div class="footer">
+  <hr style="height: 4px; background-color: #606060;">
+  <h2>特别提醒：</h2>
+  <p>本网页为江苏省梅村高级中学高二（13）班全体所有，最终解释权归高二（13）班全体所有。</p>
+  <p>在未经本网页著作者允许，不得对本网页中任何事项进行复制、转载、修改、传播！！</p>
+  <p>如有侵权，请联系著作者。联系方式：<u>2598795616@qq.com</u>。</p>
+  <p>感谢您的配合！</p>
+  <hr style="height: 4px; background-color: #606060;">
+  <hr style="height: 4px; background-color: #606060;">
+  <p>温馨提示：本网页所有内容均符合中华人民共和国网络安全法相关规定，所有内容均为娱乐用，非商用。本网页所有内容均为著作者所有，如有侵权，请联系著作者。</p>
+  <p>维护网络清朗环境，人人有责。————江苏省梅村高级中学高二（13）班宣</p>
+</div>
+</body>
+</html>
+
+</body>
+</html>
