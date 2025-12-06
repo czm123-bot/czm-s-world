@@ -39,7 +39,12 @@ document.addEventListener("DOMContentLoaded", function() {
         'Apian的历史.html',
         'Apian的惊喜.html',
         'Apian100%25_reason.html',
-        '关于我们.html'
+        '关于我们.html',
+        'musicplayer.html',
+        'v.html',
+        'preload.html',
+        '其他.html',
+        'TDCT.html'
     ];
     preloadLinks.forEach(link => {
         const preloadElem = document.createElement('link');
