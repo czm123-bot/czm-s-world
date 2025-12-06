@@ -3,11 +3,11 @@
 
 html {
     color: #2A3B4C;
-    background:#f1f1f1;
+    background:#1E3A;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
     text-rendering: optimizelegibility;
-    font-family: Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Microsoft YaHei", Roboto, Arial, sans-serif;
 }
 
 html.borderbox *, html.borderbox *:before, html.borderbox *:after {
@@ -30,7 +30,7 @@ audio, canvas, video {
 }
 
 body, button, input, select, textarea {
-    font: 300 1em/1.8 Arial, sans-serif;
+    font: 400 1em/1.8 Arial, sans-serif;
 }
 
 button::-moz-focus-inner,
@@ -171,7 +171,7 @@ figcaption {
 }
 
 strong, b {
-    font-weight: bold;
+    font-weight:600;
     color: #333;
 }
 
@@ -202,7 +202,7 @@ strong, b {
 }
 
 .serif {
-    font-family: Palatino, Optima, Georgia, serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Microsoft YaHei", Roboto, Arial, sans-serif;
 }
 
 .typo p, .typo pre, .typo ul, .typo ol, .typo dl, .typo form, .typo hr, .typo table,
@@ -211,9 +211,9 @@ strong, b {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: Arial, sans-serif;
-    font-weight: 100;
-    color: #333;
+    font-family: "Microsoft YaHei", PingFang SC, Lato, Arial, sans-serif;
+    font-weight: 500;
+    color: #2A3B4C;
     line-height: 1.35;
 }
 
@@ -317,7 +317,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 body {
     background: #F5F7FA;
-    font-family: Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Microsoft YaHei", Roboto, Arial, sans-serif;
     line-height: 1.6;
     min-height: 100vh;
 }
@@ -358,7 +358,7 @@ img {
 }
 .big-text {
     font-size: clamp(2rem, 6vw, 3.5rem);
-    font-weight: bold;
+    font-weight:600;
     color: #333;
     white-space: nowrap;
 }
