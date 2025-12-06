@@ -1,9 +1,7 @@
 @charset "utf-8";
-/* 整合自 typo1.css 的内容开始 */
-
 html {
     color: #2A3B4C;
-    background:#1E3A;
+    background: #E6EBF0;
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
     text-rendering: optimizelegibility;
@@ -308,15 +306,13 @@ h1, h2, h3, h4, h5, h6 {
 .typo img {
     max-width: 100%;
 }
-/* 整合自 typo1.css 的内容结束 */
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 body {
-    background: #F5F7FA;
+    background: #E6EBF0;
     font-family: -apple-system, BlinkMacSystemFont, "Microsoft YaHei", Roboto, Arial, sans-serif;
     line-height: 1.6;
     min-height: 100vh;
@@ -403,15 +399,15 @@ img {
 .button-group button {
     padding: 8px 16px;
     cursor: pointer;
-    background: #4CAF50;
-    border: 2px solid #388E3C;
+    background: #2c3e50;
+    border: 2px solid #1a2530;
     border-radius: 6px;
     font-size: 0.95rem;
     color: white;
     transition: all 0.3s ease;
 }
 .button-group button:hover {
-    background: #388E3C;
+    background: #1a2530;
     transform: translateY(-2px);
 }
 .button-group button a {
