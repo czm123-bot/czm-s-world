@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="icon" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1764384806579.webp" type="image/webp" sizes="32x32">
+    <link rel="icon" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1764384806579.png" type="image/png" sizes="32x32">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TDCT - 密码验证</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", Arial, sans-serif;
+        }
+        body {
+            background-color: #f0f2f5;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .login-container {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+        }
+        .password-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            margin: 15px 0;
+            outline: none;
+        }
+        .password-input:focus {
+            border-color: #4CAF50;
+        }
+        .password-input.error {
+            border-color: #f44336;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+        .submit-btn:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .error-tip {
+            color: #f44336;
+            font-size: 14px;
+            height: 18px;
+        }
+        .count-tip {
+            color: #666;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+        .lock-tip {
+            color: #f44336;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <h2>TDCT身份验证</h2>
+    <div class="error-tip" id="errorTip"></div>
+    <input type="password" class="password-input" id="passwordInput" placeholder="请输入访问密码" autocomplete="off">
+    <button class="submit-btn" id="submitBtn">确认访问</button>
+    <p class="count-tip" id="countTip">剩余尝试次数：3</p>
+    <div class="lock-tip" id="lockTip">尝试次数过多，已锁定</div>
+</div>
+
+<script>
+    const CORRECT_PASSWORDS = ["13qb"]; // 自定义密码
+    const MAX_ATTEMPTS = 3;
+    const LOCK_DURATION = 60;
+    const COOKIE_EXPIRE = 24;
+    const TARGET_PAGE = "index.html"; // 验证后跳转的主页地址
+
+    const passwordInput = document.getElementById("passwordInput");
+    const submitBtn = document.getElementById("submitBtn");
+    const errorTip = document.getElementById("errorTip");
+    const countTip = document.getElementById("countTip");
+    const lockTip = document.getElementById("lockTip");
+
+    let attemptCount = 0;
+    let isLocked = false;
+    let lockTimer = null;
+    let debounceTimer = null;
+
+    // 检查缓存，免重复验证
+    function checkCookie() {
+        const cookie = document.cookie.split("; ").find(item => item.startsWith("class13_auth="));
+        if (cookie) window.location.href = TARGET_PAGE;
+    }
+
+    function checkPassword() {
+        if (isLocked) {
+            errorTip.textContent = "当前已锁定，请稍后再试";
+            return;
+        }
+
+        const input = passwordInput.value.trim();
+        if (!input) {
+            errorTip.textContent = "请输入密码";
+            passwordInput.classList.add("error");
+            return;
+        }
+
+        if (CORRECT_PASSWORDS.includes(input)) {
+            errorTip.textContent = "";
+            passwordInput.classList.remove("error");
+            const expire = new Date();
+            expire.setTime(expire.getTime() + COOKIE_EXPIRE * 60 * 60 * 1000);
+            const cookieStr = `class13_auth=true; expires=${expire.toUTCString()}; path=/; SameSite=Lax`;
+            document.cookie = cookieStr;
+            setTimeout(() => {
+                window.location.href = TARGET_PAGE;
+            }, 100);
+        } else {
+            attemptCount++;
+            errorTip.textContent = "密码错误，请重新输入";
+            passwordInput.classList.add("error");
+            countTip.textContent = `剩余尝试次数：${MAX_ATTEMPTS - attemptCount}`;
+            passwordInput.value = "";
+            passwordInput.focus();
+
+            if (attemptCount >= MAX_ATTEMPTS) {
+                isLocked = true;
+                submitBtn.disabled = true;
+                passwordInput.disabled = true;
+                lockTip.style.display = "block";
+                let remaining = LOCK_DURATION;
+
+                lockTimer = setInterval(() => {
+                    remaining--;
+                    lockTip.textContent = `已锁定，剩余 ${remaining} 秒`;
+                    if (remaining <= 0) {
+                        clearInterval(lockTimer);
+                        isLocked = false;
+                        attemptCount = 0;
+                        submitBtn.disabled = false;
+                        passwordInput.disabled = false;
+                        lockTip.style.display = "none";
+                        countTip.textContent = `剩余尝试次数：${MAX_ATTEMPTS}`;
+                        errorTip.textContent = "";
+                        passwordInput.classList.remove("error");
+                    }
+                }, 1000);
+            }
+        }
+    }
+
+    function debounceCheck(e) {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(() => {
+            if (e.type === "click" || (e.type === "keydown" && e.key === "Enter")) checkPassword();
+        }, 300);
+    }
+
+    function bindEvents() {
+        submitBtn.addEventListener("click", debounceCheck);
+        passwordInput.addEventListener("keydown", debounceCheck);
+        passwordInput.addEventListener("focus", () => passwordInput.classList.remove("error"));
+    }
+
+    window.onload = () => {
+        checkCookie();
+        bindEvents();
+    };
+
+    window.onunload = () => {
+        clearInterval(lockTimer);
+        clearTimeout(debounceTimer);
+    };
+</script>
+</body>
+</html>
