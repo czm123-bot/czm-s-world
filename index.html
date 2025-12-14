@@ -16,9 +16,9 @@
             }
             return null;
         }
-
         window.addEventListener('DOMContentLoaded', () => {
-            if (!getCookie('class13_auth')) {
+            const auth = getCookie('class13_auth');
+            if (!auth || auth !== 'true') {
                 window.location.href = "login.html";
             }
         });
