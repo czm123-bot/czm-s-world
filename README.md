@@ -1,1 +1,1 @@
-This webpage is created to commemorate our class life.
+This webpage is created to commemorate our class's life.
