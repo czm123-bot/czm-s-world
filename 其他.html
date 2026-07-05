@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <link rel="stylesheet" href="common.css">
+  <link rel="preload" href="cover.jpeg" as="image" type="image/jpeg">
   <meta name="referrer" content="no-referrer-when-downgrade">
   <title>TDCT的专属娱乐：Music</title>
   <style>
@@ -120,7 +121,7 @@
     <div class="music-player-wrapper">
       <div class="music-player">
         <div class="player-cover">
-          <img src="https://via.placeholder.com/100/81C784/fff?text=TDCT" alt="封面">
+          <img src="cover.jpeg" alt="封面">
         </div>
         <div class="player-info">
           <h3 class="music-title">当前播放：阿刁</h3>
@@ -267,8 +268,7 @@
 
     function updateProgress() {
       if (isNaN(audio.duration)) return;
-      const percent = (audio.currentTime / audio.duration) * 100;
-      progress.value = percent;
+      progress.value= (audio.currentTime / audio.duration) * 100;
       currentTimeEl.textContent = formatTime(audio.currentTime);
     }
 
