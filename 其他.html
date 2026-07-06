@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <link rel="stylesheet" href="common.css">
+  <link rel="stylesheet" href="common-glass.css">
+  <style>
+    *{
+      tap-highlight-color:transparent;
+      -webkit-tap-highlight-color:transparent;
+    }
+    body{
+      min-height:100vh;
+      padding:20px;
+      overflow-x:hidden;
+      -webkit-backface-visibility:hidden;
+      backface-visibility:hidden;
+      transform:translate3d(0,0,0);
+      background: linear-gradient(135deg, #eef2f6 0%, #e2e8f0 100%);
+    }
+    .base-card{
+      width:min(90%,900px);
+      margin:0 auto;
+      padding:32px 28px;
+      background:rgba(255,255,255,0.40);
+      -webkit-backdrop-filter: blur(36px) saturate(180%) contrast(105%);
+      backdrop-filter: blur(36px) saturate(180%) contrast(105%);
+      border:1px solid rgba(255,255,255,0.60);
+      border-radius:32px;
+      box-shadow:0 20px 60px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.95);
+      position:relative;
+      z-index:1;
+    }
+    .base-card::before{
+      content:"";
+      position:absolute;
+      inset:-1px;
+      border-radius:32px;
+      background:linear-gradient(135deg,rgba(255,255,255,0.75),rgba(255,255,255,0.35));
+      z-index:-1;
+      opacity:0.5;
+    }
+    .glass-btn-group {
+      gap: 14px !important;
+      margin-top: 16px !important;
+    }
+    .glass-btn {
+      padding: 6px 14px !important;
+      font-size: 13px !important;
+      border-radius: 30px !important;
+      background: rgba(210, 225, 240, 0.50) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+      backdrop-filter: blur(12px) !important;
+      border: 1px solid rgba(255,255,255,0.80) !important;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.02), inset 0 1px 0 rgba(255,255,255,0.98) !important;
+      flex: 0 1 auto !important;
+    }
+    .glass-btn .btn-spot {
+      width: 140px !important;
+      height: 140px !important;
+      background: radial-gradient(circle, rgba(255,255,255,0.35) 0%, transparent 60%) !important;
+      filter: blur(12px) !important;
+    }
+    .glass-btn:hover {
+      background: rgba(200, 215, 230, 0.80) !important;
+    }
+    .glass-footer {
+      background: rgba(255,255,255,0.25) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      backdrop-filter: blur(20px) !important;
+      border: 1px solid rgba(255,255,255,0.50) !important;
+      border-radius: 28px !important;
+      padding: 18px 24px !important;
+      margin-top:20px;
+    }
+    .glass-footer h2, .glass-footer p {
+      color: #334155 !important;
+    }
+    .text-content h1 {
+      color: #1e293b !important;
+    }
+    .music-player-wrapper {
+      margin: 16px auto;
+      width: 100%;
+      max-width: 700px;
+      padding: 20px 24px;
+      background: rgba(210, 225, 240, 0.20);
+      -webkit-backdrop-filter: blur(20px) saturate(170%);
+      backdrop-filter: blur(20px) saturate(170%);
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.50);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.02);
+    }
+    .music-player .player-info {
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    .music-player .music-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #0f172a;
+    }
+    .music-player .music-singer {
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+    .player-progress {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 12px 0;
+    }
+    .player-progress progress {
+      flex: 1;
+      height: 5px;
+      border-radius: 10px;
+      background: rgba(0,0,0,0.06);
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .player-progress progress::-webkit-progress-bar {
+      background: rgba(0,0,0,0.06);
+      border-radius: 10px;
+    }
+    .player-progress progress::-webkit-progress-value {
+      background: linear-gradient(90deg, #5b7fbf, #7c8fbf);
+      border-radius: 10px;
+    }
+    .time-display {
+      font-size: 0.8rem;
+      color: #64748b;
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      font-variant-numeric: tabular-nums;
+    }
+    .player-controls {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin: 14px 0 18px;
+      flex-wrap: wrap;
+    }
+    .player-controls button {
+      padding: 8px 22px;
+      border-radius: 40px;
+      border: 1px solid rgba(255,255,255,0.75);
+      background: rgba(210, 225, 240, 0.40);
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      font-weight: 500;
+      font-size: 13px;
+      color: #0f172a;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+    .player-controls button:hover {
+      background: rgba(200, 215, 230, 0.80);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+    }
+    .player-controls button:active {
+      transform: scale(0.96);
+    }
+    .music-list {
+      max-height: 240px;
+      overflow-y: auto;
+      padding-right: 6px;
+    }
+    .music-list .list-item {
+      padding: 8px 14px;
+      border-radius: 12px;
+      margin-bottom: 4px;
+      background: rgba(255,255,255,0.20);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.30);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      color: #334155;
+      font-size: 0.9rem;
+    }
+    .music-list .list-item:hover {
+      background: rgba(255,255,255,0.50);
+      transform: translateX(4px);
+    }
+    .music-list .list-item.active {
+      background: rgba(37, 99, 235, 0.12);
+      border-color: rgba(37, 99, 235, 0.25);
+      font-weight: 500;
+      color: #0f172a;
+    }
+    .music-list::-webkit-scrollbar {
+      width: 4px;
+    }
+    .music-list::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .music-list::-webkit-scrollbar-thumb {
+      background: rgba(0,0,0,0.10);
+      border-radius: 10px;
+    }
+    .nav a {
+      background: rgba(210, 225, 240, 0.40) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+      backdrop-filter: blur(12px) !important;
+      border-color: rgba(255,255,255,0.70) !important;
+      color: #1e293b !important;
+      padding: 6px 14px !important;
+      font-size: 13px !important;
+    }
+    .nav a:hover {
+      background: rgba(200, 215, 230, 0.75) !important;
+      transform: translateY(-2px) scale(1.02) !important;
+    }
+    .nav a .nav-spot {
+      width: 140px !important;
+      height: 140px !important;
+      background: radial-gradient(circle, rgba(255,255,255,0.35) 0%, transparent 60%) !important;
+      filter: blur(12px) !important;
+    }
+  </style>
+</head>
+<body>
+<div class="nav">
+  <a href="index.html">主页 <span class="nav-spot"></span></a>
+  <a href="Apian的历史.html">Apian的历史 <span class="nav-spot"></span></a>
+  <a href="Apian的惊喜.html">Apian的惊喜 <span class="nav-spot"></span></a>
+  <a href="Apian100%25_reason.html">Apian100%的原因 <span class="nav-spot"></span></a>
+  <a href="关于我们.html">关于我们 <span class="nav-spot"></span></a>
+  <a href="TDCT.html">TDCT <span class="nav-spot"></span></a>
+  <a href="其他.html" class="active">Music <span class="nav-spot"></span></a>
+  <a href="note.html">记事本 <span class="nav-spot"></span></a>
+</div>
+
+<div class="base-card">
+  <div class="top-header">
+    <div class="top-fixed-img">
+      <picture>
+        <source srcset="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1764384759500.webp" type="image/webp">
+        <img src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1764384759500.jpg" alt="TDCT" onerror="this.src='https://via.placeholder.com/120';">
+      </picture>
+    </div>
+    <div class="big-text">TDCT</div>
+  </div>
+
+  <div class="text-content" style="padding:0;">
+    <h1>音乐欣赏</h1>
+    <div class="music-player-wrapper">
+      <div class="music-player">
+        <div class="player-info">
+          <h3 class="music-title">当前播放：阿刁</h3>
+          <p class="music-singer">张韶涵</p>
+        </div>
+        <div class="player-progress">
+          <progress id="progress" value="0" max="100"></progress>
+          <div class="time-display">
+            <span id="current-time">00:00</span>
+            <span>/</span>
+            <span id="total-time">00:00</span>
+          </div>
+        </div>
+        <div class="player-controls">
+          <button id="prev-btn">上一首</button>
+          <button id="play-btn">播放</button>
+          <button id="next-btn">下一首</button>
+        </div>
+        <div class="music-list">
+          <div class="list-item active" data-src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129121118_001.mp3" data-title="阿刁" data-singer="张韶涵">1. 阿刁 - 张韶涵</div>
+          <div class="list-item" data-src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129121257_001.mp3" data-title="光年之外" data-singer="邓紫棋">2. 光年之外 - 邓紫棋</div>
+          <div class="list-item" data-src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129122044_001.mp3" data-title="青花瓷" data-singer="周杰伦">3. 青花瓷 - 周杰伦</div>
+          <div class="list-item" data-src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129122054_001.mp3" data-title="晴天" data-singer="周杰伦">4. 晴天 - 周杰伦</div>
+          <div class="list-item" data-src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129122116_001.mp3" data-title="反方向的钟" data-singer="周杰伦">5. 反方向的钟 - 周杰伦</div>
+          <div class="list-item" data-src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129122105_001.mp3" data-title="稻香" data-singer="周杰伦">6. 稻香 - 周杰伦</div>
+          <div class="list-item" data-src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/泡沫.mp3" data-title="泡沫" data-singer="邓紫棋">7. 泡沫 - 邓紫棋</div>
+          <div class="list-item" data-src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/一路逆风.mp3" data-title="一路逆风" data-singer="邓紫棋">8. 一路逆风 - 邓紫棋</div>
+          <div class="list-item" data-src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/单行的轨道.mp3" data-title="单行的轨道" data-singer="邓紫棋">9. 单行的轨道 - 邓紫棋</div>
+          <div class="list-item" data-src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/龙卷风.mp3" data-title="龙卷风" data-singer="邓紫棋">10. 龙卷风 - 邓紫棋</div>
+        </div>
+        <audio id="audio-player" preload="metadata">
+          <source src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129121118_001.mp3" type="audio/mpeg">
+          <source src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129121257_001.mp3" type="audio/mpeg">
+          <source src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129122044_001.mp3" type="audio/mpeg">
+          <source src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129122054_001.mp3" type="audio/mpeg">
+          <source src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129122116_001.mp3" type="audio/mpeg">
+          <source src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/DM_20251129122105_001.mp3" type="audio/mpeg">
+          <source src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/泡沫.mp3" type="audio/mpeg">
+          <source src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/一路逆风.mp3" type="audio/mpeg">
+          <source src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/单行的轨道.mp3" type="audio/mpeg">
+          <source src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/龙卷风.mp3" type="audio/mpeg">
+        </audio>
+      </div>
+    </div>
+  </div>
+
+  <div class="glass-btn-group" style="margin-top:16px;">
+    <button class="glass-btn" onclick="window.history.back()"><span class="btn-spot"></span>回到上一页</button>
+    <button class="glass-btn"><a href="index.html"><span class="btn-spot"></span>返回首页</a></button>
+    <button class="glass-btn"><a href="Apian的惊喜.html"><span class="btn-spot"></span>A pian的惊喜</a></button>
+    <button class="glass-btn"><a href="Apian的历史.html"><span class="btn-spot"></span>A pian的历史</a></button>
+    <button class="glass-btn"><a href="Apian100%25_reason.html"><span class="btn-spot"></span>Apian100%的原因</a></button>
+    <button class="glass-btn"><a href="关于我们.html"><span class="btn-spot"></span>关于我们</a></button>
+    <button class="glass-btn"><a href="TDCT.html"><span class="btn-spot"></span>关于TDCT</a></button>
+    <button class="glass-btn"><a href="v.html"><span class="btn-spot"></span>Video</a></button>
+  </div>
+
+  <div class="glass-footer" style="margin-top:20px;">
+    <hr style="height: 2px; background: linear-gradient(90deg, rgba(42,59,76,0.08), rgba(42,59,76,0.20), rgba(42,59,76,0.08)); border: none;">
+    <h2>特别提醒：</h2>
+    <p>本网页为江苏省梅村高级中学高二（13）班全体所有，最终解释权归高二（13）班全体所有。</p>
+    <p>在未经本网页著作者允许，不得对本网页中任何事项进行复制、转载、修改、传播！！</p>
+    <p>如有侵权，请联系著作者。联系方式：<u>2598795616@qq.com</u>。</p>
+    <p>感谢您的配合！</p>
+    <hr style="height: 2px; background: linear-gradient(90deg, rgba(42,59,76,0.08), rgba(42,59,76,0.20), rgba(42,59,76,0.08)); border: none;">
+    <p>温馨提示：本网页所有内容均符合中华人民共和国网络安全法相关规定，所有内容均为娱乐用，非商用。本网页所有内容均为著作者所有，如有侵权，请联系著作者。</p>
+    <p>维护网络清朗环境，人人有责。————江苏省梅村高级中学高二（13）班宣</p>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const audio = document.getElementById('audio-player');
+    const playBtn = document.getElementById('play-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const progress = document.getElementById('progress');
+    const currentTimeEl = document.getElementById('current-time');
+    const totalTimeEl = document.getElementById('total-time');
+    const musicTitle = document.querySelector('.music-title');
+    const musicSinger = document.querySelector('.music-singer');
+    const listItems = document.querySelectorAll('.list-item');
+    let currentIndex = 0;
+
+    listItems.forEach((item, index) => {
+      item.addEventListener('click', () => {
+        currentIndex = index;
+        loadMusic();
+        playMusic();
+      });
+    });
+
+    playBtn.addEventListener('click', () => {
+      audio.paused ? playMusic() : pauseMusic();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + listItems.length) % listItems.length;
+      loadMusic();
+      playMusic();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % listItems.length;
+      loadMusic();
+      playMusic();
+    });
+
+    audio.addEventListener('timeupdate', updateProgress);
+    audio.addEventListener('loadedmetadata', () => {
+      totalTimeEl.textContent = formatTime(audio.duration);
+    });
+
+    audio.addEventListener('ended', () => {
+      nextBtn.click();
+    });
+
+    progress.addEventListener('input', () => {
+      const seekTime = (progress.value / 100) * audio.duration;
+      audio.currentTime = seekTime;
+    });
+
+    function loadMusic() {
+      const activeItem = document.querySelector('.list-item.active');
+      if (activeItem) activeItem.classList.remove('active');
+      listItems[currentIndex].classList.add('active');
+      const src = listItems[currentIndex].dataset.src;
+      const title = listItems[currentIndex].dataset.title;
+      const singer = listItems[currentIndex].dataset.singer;
+      audio.src = src;
+      musicTitle.textContent = `当前播放：${title}`;
+      musicSinger.textContent = singer;
+    }
+
+    function playMusic() {
+      audio.play().catch(e => {});
+      playBtn.textContent = '暂停';
+    }
+
+    function pauseMusic() {
+      audio.pause();
+      playBtn.textContent = '播放';
+    }
+
+    function updateProgress() {
+      if (isNaN(audio.duration)) return;
+      progress.value = (audio.currentTime / audio.duration) * 100;
+      currentTimeEl.textContent = formatTime(audio.currentTime);
+    }
+
+    function formatTime(time) {
+      if (isNaN(time)) return '00:00';
+      const minutes = Math.floor(time / 60);
+      const seconds = Math.floor(time % 60);
+      return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+    loadMusic();
+  });
+</script>
+<script src="common.js"></script>
+</body>
+</html>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <link rel="icon" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1764384806579.webp" type="image/webp" sizes="32x32">
+    <link rel="icon" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1764384806579.png" type="image/png" sizes="32x32">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="common-glass.css">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <title>A pian的惊喜</title>
+    <style>
+        body { background: linear-gradient(135deg, #eef2f6 0%, #e2e8f0 100%); padding:20px; }
+        .glass { background: rgba(255,255,255,0.40) !important; -webkit-backdrop-filter: blur(36px) saturate(180%) contrast(105%) !important; backdrop-filter: blur(36px) saturate(180%) contrast(105%) !important; border: 1px solid rgba(255,255,255,0.60) !important; box-shadow: 0 20px 60px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.95) !important; }
+        .glass-btn-group { gap: 14px !important; margin-top: 16px !important; }
+        .glass-btn { padding: 6px 14px !important; font-size: 13px !important; border-radius: 30px !important; background: rgba(210, 225, 240, 0.50) !important; -webkit-backdrop-filter: blur(12px) !important; backdrop-filter: blur(12px) !important; border: 1px solid rgba(255,255,255,0.80) !important; box-shadow: 0 4px 16px rgba(0,0,0,0.02), inset 0 1px 0 rgba(255,255,255,0.98) !important; flex: 0 1 auto !important; }
+        .glass-btn .btn-spot { width: 140px !important; height: 140px !important; background: radial-gradient(circle, rgba(255,255,255,0.35) 0%, transparent 60%) !important; filter: blur(12px) !important; }
+        .glass-btn:hover { background: rgba(200, 215, 230, 0.80) !important; }
+        .glass-footer { background: rgba(255,255,255,0.25) !important; -webkit-backdrop-filter: blur(20px) !important; backdrop-filter: blur(20px) !important; border: 1px solid rgba(255,255,255,0.50) !important; border-radius: 28px !important; padding: 18px 24px !important; }
+        .glass-footer h2, .glass-footer p { color: #334155 !important; }
+        .text-content h1, .text-content h2, .text-content h3 { color: #1e293b !important; }
+        .text-content p { color: #475569 !important; }
+        .image-container { border-color: rgba(0,0,0,0.06) !important; }
+        .nav a { background: rgba(210, 225, 240, 0.40) !important; -webkit-backdrop-filter: blur(12px) !important; backdrop-filter: blur(12px) !important; border-color: rgba(255,255,255,0.70) !important; color: #1e293b !important; padding: 6px 14px !important; font-size: 13px !important; }
+        .nav a:hover { background: rgba(200, 215, 230, 0.75) !important; transform: translateY(-2px) scale(1.02) !important; }
+        .nav a .nav-spot { width: 140px !important; height: 140px !important; background: radial-gradient(circle, rgba(255,255,255,0.35) 0%, transparent 60%) !important; filter: blur(12px) !important; }
+    </style>
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763188945254.webp" as="image" type="image/webp">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763188945254.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/d3b74e2f88aa404a791f12102a54f899.webp" as="image" type="image/webp">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/d3b74e2f88aa404a791f12102a54f899.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/2b9bdca0c51e4213c810ee7d5239b0b1.webp" as="image" type="image/webp">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/2b9bdca0c51e4213c810ee7d5239b0b1.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/9c62fd25c0c867757864a4b9fee392f3.webp" as="image" type="image/webp">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/9c62fd25c0c867757864a4b9fee392f3.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/22affc0765fc725eba8aaf6ccb68d207.webp" as="image" type="image/webp">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/22affc0765fc725eba8aaf6ccb68d207.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/70b26f8694ce3ee8c1349dd16c20b300.webp" as="image" type="image/webp">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/70b26f8694ce3ee8c1349dd16c20b300.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/724e289a8bc776d1eeae30b5178a7e9f.webp" as="image" type="image/webp">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/724e289a8bc776d1eeae30b5178a7e9f.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763187965520.webp" as="image" type="image/webp">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763187965520.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763187970151.webp" as="image" type="image/webp">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763187970151.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/a0354eaddb7d509f7c6b923c11b5579a.webp" as="image" type="image/webp">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/a0354eaddb7d509f7c6b923c11b5579a.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/c69ee5dccac6d8e85a5be6e89c2df1ee.webp" as="image" type="image/webp">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/c69ee5dccac6d8e85a5be6e89c2df1ee.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/cb16488d60480244978d693660144cb4.webp" as="image" type="image/webp">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/cb16488d60480244978d693660144cb4.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/cf022f8eca1adc2ef11cb6b993fc2c5d.webp" as="image" type="image/webp">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/cf022f8eca1adc2ef11cb6b993fc2c5d.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/u_846760715_2221104596&fm_253&fmt_auto&app_120&f.webp" as="image" type="image/webp">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/u_846760715_2221104596&fm_253&fmt_auto&app_120&f.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763189109322.webp" as="image" type="image/webp">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763189109322.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763189108798.webp" as="image" type="image/webp">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763189108798.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763189107116.webp" as="image" type="image/webp">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763189107116.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763189260145.webp" as="image" type="image/webp">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763189260145.jpg" as="image" type="image/jpeg">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/77621685921245.webp" as="image" type="image/webp">
+    <link rel="preload" href="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/77621685921245.jpg" as="image" type="image/jpeg">
+</head>
+<body>
+<nav class="nav">
+    <a href="index.html">主页 <span class="nav-spot"></span></a>
+    <a href="Apian的历史.html">Apian的历史 <span class="nav-spot"></span></a>
+    <a href="Apian100%25_reason.html">Apian100%的原因 <span class="nav-spot"></span></a>
+    <a href="关于我们.html">关于我们 <span class="nav-spot"></span></a>
+    <a href="TDCT.html">TDCT <span class="nav-spot"></span></a>
+    <a href="其他.html">Music <span class="nav-spot"></span></a>
+    <a href="v.html">Video <span class="nav-spot"></span></a>
+    <a href="note.html">记事本 <span class="nav-spot"></span></a>
+</nav>
+
+<div class="glass" style="max-width:1200px; margin-bottom:30px;">
+    <div class="top-header">
+        <div class="top-fixed-img">
+            <picture>
+                <source srcset="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1764384759500.webp" type="image/webp">
+                <img src="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1764384759500.jpg" alt="TDCT" onerror="this.src='https://via.placeholder.com/120';" loading="eager">
+            </picture>
+        </div>
+        <div class="big-text">TDCT</div>
+    </div>
+    <div class="text-content" style="padding:0;">
+        <div class="image-container">
+            <span class="link" data-img-webp="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763188945254.webp" data-img-jpg="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763188945254.jpg">惊喜1：什么？！你没看过？</span>
+            <picture>
+                <source class="target-img" data-srcset="" type="image/webp">
+                <img class="target-img" data-src="" alt="惊喜1">
+            </picture>
+        </div>
+        <div class="image-container">
+            <span class="link" data-img-webp="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/d3b74e2f88aa404a791f12102a54f899.webp" data-img-jpg="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/d3b74e2f88aa404a791f12102a54f899.jpg">惊喜2：Look Look！</span>
+            <picture>
+                <source class="target-img" data-srcset="" type="image/webp">
+                <img class="target-img" data-src="" alt="惊喜2">
+            </picture>
+        </div>
+        <div class="image-container">
+            <span class="link" data-img-webp="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/2b9bdca0c51e4213c810ee7d5239b0b1.webp" data-img-jpg="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/2b9bdca0c51e4213c810ee7d5239b0b1.jpg">惊喜3：Who see who is dog!</span>
+            <picture>
+                <source class="target-img" data-srcset="" type="image/webp">
+                <img class="target-img" data-src="" alt="惊喜3">
+            </picture>
+        </div>
+        <div class="image-container">
+            <span class="link" data-img-webp="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/9c62fd25c0c867757864a4b9fee392f3.webp" data-img-jpg="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/9c62fd25c0c867757864a4b9fee392f3.jpg">惊喜4:Barking,now!</span>
+            <picture>
+                <source class="target-img" data-srcset="" type="image/webp">
+                <img class="target-img" data-src="" alt="惊喜4">
+            </picture>
+        </div>
+        <div class="image-container">
+            <span class="link" data-img-webp="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/22affc0765fc725eba8aaf6ccb68d207.webp" data-img-jpg="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/22affc0765fc725eba8aaf6ccb68d207.jpg">惊喜5:en……</span>
+            <picture>
+                <source class="target-img" data-srcset="" type="image/webp">
+                <img class="target-img" data-src="" alt="惊喜5">
+            </picture>
+        </div>
+        <div class="image-container">
+            <span class="link" data-img-webp="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/70b26f8694ce3ee8c1349dd16c20b300.webp" data-img-jpg="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/70b26f8694ce3ee8c1349dd16c20b300.jpg">惊喜6:看看吧，你干的好事！</span>
+            <picture>
+                <source class="target-img" data-srcset="" type="image/webp">
+                <img class="target-img" data-src="" alt="惊喜6">
+            </picture>
+        </div>
+        <div class="image-container">
+            <span class="link" data-img-webp="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/724e289a8bc776d1eeae30b5178a7e9f.webp" data-img-jpg="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/724e289a8bc776d1eeae30b5178a7e9f.jpg">惊喜7：走过路过不要错过！</span>
+            <picture>
+                <source class="target-img" data-srcset="" type="image/webp">
+                <img class="target-img" data-src="" alt="惊喜7">
+            </picture>
+        </div>
+        <div class="image-container">
+            <span class="link" data-img-webp="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763187965520.webp" data-img-jpg="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763187965520.jpg">惊喜8：我愿意将其评为……</span>
+            <picture>
+                <source class="target-img" data-srcset="" type="image/webp">
+                <img class="target-img" data-src="" alt="惊喜8">
+            </picture>
+        </div>
+        <div class="image-container">
+            <span class="link" data-img-webp="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763187970151.webp" data-img-jpg="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763187970151.jpg">惊喜9：我还能说什么……</span>
+            <picture>
+                <source class="target-img" data-srcset="" type="image/webp">
+                <img class="target-img" data-src="" alt="惊喜9">
+            </picture>
+        </div>
+        <div class="image-container">
+            <span class="link" data-img-webp="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/a0354eaddb7d509f7c6b923c11b5579a.webp" data-img-jpg="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/a0354eaddb7d509f7c6b923c11b5579a.jpg">惊喜10：你还没看过吗？！</span>
+            <picture>
+                <source class="target-img" data-srcset="" type="image/webp">
+                <img class="target-img" data-src="" alt="惊喜10">
+            </picture>
+        </div>
+        <div class="image-container">
+            <span class="link" data-img-webp="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/c69ee5dccac6d8e85a5be6e89c2df1ee.webp" data-img-jpg="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/c69ee5dccac6d8e85a5be6e89c2df1ee.jpg">惊喜11：求求各位赏个脸……</span>
+            <picture>
+                <source class="target-img" data-srcset="" type="image/webp">
+                <img class="target-img" data-src="" alt="惊喜11">
+            </picture>
+        </div>
+        <div class="image-container">
+            <span class="link" data-img-webp="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/cb16488d60480244978d693660144cb4.webp" data-img-jpg="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/cb16488d60480244978d693660144cb4.jpg">惊喜12：别看了！</span>
+            <picture>
+                <source class="target-img" data-srcset="" type="image/webp">
+                <img class="target-img" data-src="" alt="惊喜12">
+            </picture>
+        </div>
+        <div class="image-container">
+            <span class="link" data-img-webp="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/cf022f8eca1adc2ef11cb6b993fc2c5d.webp" data-img-jpg="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/cf022f8eca1adc2ef11cb6b993fc2c5d.jpg">惊喜13：还看！</span>
+            <picture>
+                <source class="target-img" data-srcset="" type="image/webp">
+                <img class="target-img" data-src="" alt="惊喜13">
+            </picture>
+        </div>
+        <div class="image-container">
+            <span class="link" data-img-webp="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/d3b74e2f88aa404a791f12102a54f899.webp" data-img-jpg="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/d3b74e2f88aa404a791f12102a54f899.jpg">惊喜14：收手吧。</span>
+            <picture>
+                <source class="target-img" data-srcset="" type="image/webp">
+                <img class="target-img" data-src="" alt="惊喜14">
+            </picture>
+        </div>
+        <div class="image-container">
+            <span class="link" data-img-webp="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/u_846760715_2221104596&fm_253&fmt_auto&app_120&f.webp" data-img-jpg="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/u_846760715_2221104596&fm_253&fmt_auto&app_120&f.jpg">惊喜15：我错了o(T-T)ゞ</span>
+            <picture>
+                <source class="target-img" data-srcset="" type="image/webp">
+                <img class="target-img" data-src="" alt="惊喜15">
+            </picture>
+        </div>
+        <div class="image-container">
+            <span class="link" data-img-webp="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763189109322.webp" data-img-jpg="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763189109322.jpg">惊喜16：重整旗鼓……冲锋！</span>
+            <picture>
+                <source class="target-img" data-srcset="" type="image/webp">
+                <img class="target-img" data-src="" alt="惊喜16">
+            </picture>
+        </div>
+        <div class="image-container">
+            <span class="link" data-img-webp="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763189108798.webp" data-img-jpg="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763189108798.jpg">惊喜17：你懂我的。</span>
+            <picture>
+                <source class="target-img" data-srcset="" type="image/webp">
+                <img class="target-img" data-src="" alt="惊喜17">
+            </picture>
+        </div>
+        <div class="image-container">
+            <span class="link" data-img-webp="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763189107116.webp" data-img-jpg="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763189107116.jpg">惊喜18：我懂你的。</span>
+            <picture>
+                <source class="target-img" data-srcset="" type="image/webp">
+                <img class="target-img" data-src="" alt="惊喜18">
+            </picture>
+        </div>
+        <div class="image-container">
+            <span class="link" data-img-webp="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763189260145.webp" data-img-jpg="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/1763189260145.jpg">惊喜19：我们都不懂的。</span>
+            <picture>
+                <source class="target-img" data-srcset="" type="image/webp">
+                <img class="target-img" data-src="" alt="惊喜19">
+            </picture>
+        </div>
+        <div class="image-container">
+            <span class="link" data-img-webp="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/77621685921245.webp" data-img-jpg="https://cdn.jsdmirror.com/gh/czm123-bot/czm-s-world/77621685921245.jpg">惊喜20：去吧，放手一搏吧！</span>
+            <picture>
+                <source class="target-img" data-srcset="" type="image/webp">
+                <img class="target-img" data-src="" alt="惊喜20">
+            </picture>
+        </div>
+        <p>惊喜仍在更新中……</p>
+    </div>
+    <div class="glass-btn-group" style="margin-top:16px;">
+        <button class="glass-btn" onclick="window.history.back()"><span class="btn-spot"></span>回到上一页</button>
+        <button class="glass-btn"><a href="index.html"><span class="btn-spot"></span>返回首页</a></button>
+        <button class="glass-btn"><a href="Apian的历史.html"><span class="btn-spot"></span>A pian的历史</a></button>
+        <button class="glass-btn"><a href="Apian100%25_reason.html"><span class="btn-spot"></span>A pian100%的原因</a></button>
+        <button class="glass-btn"><a href="关于我们.html"><span class="btn-spot"></span>关于我们</a></button>
+        <button class="glass-btn"><a href="TDCT.html"><span class="btn-spot"></span>关于TDCT</a></button>
+        <button class="glass-btn"><a href="其他.html"><span class="btn-spot"></span>Music</a></button>
+        <button class="glass-btn"><a href="v.html"><span class="btn-spot"></span>Video</a></button>
+        <button class="glass-btn"><a href="note.html"><span class="btn-spot"></span>记事本</a></button>
+    </div>
+</div>
+
+<div class="glass-footer" style="max-width:1200px; margin:0 auto;">
+    <hr class="separator">
+    <h2>特别提醒：</h2>
+    <p>本网页为江苏省梅村高级中学高二（13）班全体所有，最终解释权归高二（13）班全体所有。</p>
+    <p>在未经本网页著作者允许，不得对本网页中任何事项进行复制、转载、修改、传播！！</p>
+    <p>如有侵权，请联系著作者。联系方式：<u>2598795616@qq.com</u>。</p>
+    <p>感谢您的配合！</p>
+    <hr class="separator">
+    <p>温馨提示：本网页所有内容均符合中华人民共和国网络安全法相关规定，所有内容均为娱乐用，非商用。本网页所有内容均为著作者所有，如有侵权，请联系著作者。</p>
+    <p>维护网络清朗环境，人人有责。————江苏省梅村高级中学高二（13）班宣</p>
+</div>
+
+<script src="common.js"></script>
+</body>
+</html>

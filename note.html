@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1.0">
+    <title>私人记事本</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="common-glass.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #eef2f6 0%, #e2e8f0 100%);
+            padding: 20px;
+        }
+        .glass {
+            background: rgba(255,255,255,0.40) !important;
+            -webkit-backdrop-filter: blur(36px) saturate(180%) contrast(105%) !important;
+            backdrop-filter: blur(36px) saturate(180%) contrast(105%) !important;
+            border: 1px solid rgba(255,255,255,0.60) !important;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.95) !important;
+        }
+        #noteInput {
+            width:100%;
+            min-height:320px;
+            padding:20px;
+            background: rgba(255,255,255,0.12);
+            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.20);
+            border-radius:24px;
+            color: #1e293b;
+            outline:none;
+            font-size:15px;
+            resize:vertical;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.02), inset 0 1px 0 rgba(255,255,255,0.8);
+            font-family: inherit;
+            line-height:1.8;
+        }
+        #noteInput::placeholder {
+            color: rgba(30,41,59,0.35);
+            font-weight:300;
+            letter-spacing:0.3px;
+        }
+        #noteInput:focus {
+            border-color: rgba(37, 99, 235, 0.30);
+            box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.05), 0 8px 40px rgba(37, 99, 235, 0.04), inset 0 0 60px rgba(37, 99, 235, 0.01);
+            background: rgba(255,255,255,0.18);
+            transform: scale(1.003);
+        }
+        #noteInput.glow-active {
+            border-color: rgba(37, 99, 235, 0.40);
+            box-shadow: 0 0 0 8px rgba(37, 99, 235, 0.06), 0 8px 48px rgba(37, 99, 235, 0.06), inset 0 0 80px rgba(37, 99, 235, 0.02);
+            animation: glow-pulse 2.4s ease-in-out infinite;
+        }
+        @keyframes glow-pulse {
+            0%, 100% { box-shadow: 0 0 0 8px rgba(37,99,235,0.05), 0 8px 40px rgba(37,99,235,0.04), inset 0 0 60px rgba(37,99,235,0.01); }
+            50% { box-shadow: 0 0 0 14px rgba(37,99,235,0.08), 0 12px 56px rgba(37,99,235,0.08), inset 0 0 80px rgba(37,99,235,0.02); }
+        }
+        .btnBox {
+            display:flex;
+            gap:14px;
+            justify-content:center;
+            margin-top:24px;
+            flex-wrap:wrap;
+        }
+        .btn {
+            padding:10px 28px;
+            border:none;
+            border-radius:40px;
+            font-size:14px;
+            font-weight:500;
+            color:#0f172a;
+            cursor:pointer;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            -webkit-backdrop-filter: blur(16px);
+            backdrop-filter: blur(16px);
+            background: rgba(210, 225, 240, 0.50);
+            border: 1px solid rgba(255,255,255,0.75);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.02), inset 0 1px 0 rgba(255,255,255,0.98);
+            letter-spacing:0.3px;
+        }
+        .btn:hover {
+            background: rgba(200, 215, 230, 0.80);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,1);
+        }
+        .btn:active {
+            transform: scale(0.97);
+        }
+        #saveBtn {
+            background: rgba(37, 99, 235, 0.12);
+            border-color: rgba(37, 99, 235, 0.20);
+        }
+        #saveBtn:hover {
+            background: rgba(37, 99, 235, 0.25);
+        }
+        #clearBtn {
+            background: rgba(239, 68, 68, 0.10);
+            border-color: rgba(239, 68, 68, 0.18);
+        }
+        #clearBtn:hover {
+            background: rgba(239, 68, 68, 0.22);
+        }
+        .glass h2 {
+            margin-top:0;
+            text-align:center;
+            color: #0f172a;
+            font-weight:600;
+        }
+        .nav a {
+            background: rgba(210, 225, 240, 0.40) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            backdrop-filter: blur(12px) !important;
+            border-color: rgba(255,255,255,0.70) !important;
+            color: #1e293b !important;
+            padding: 6px 14px !important;
+            font-size: 13px !important;
+        }
+        .nav a:hover {
+            background: rgba(200, 215, 230, 0.75) !important;
+            transform: translateY(-2px) scale(1.02) !important;
+        }
+        .nav a .nav-spot {
+            width: 140px !important;
+            height: 140px !important;
+            background: radial-gradient(circle, rgba(255,255,255,0.35) 0%, transparent 60%) !important;
+            filter: blur(12px) !important;
+        }
+    </style>
+</head>
+<body>
+<nav class="nav">
+    <a href="index.html">主页 <span class="nav-spot"></span></a>
+    <a href="Apian的历史.html">Apian的历史 <span class="nav-spot"></span></a>
+    <a href="Apian的惊喜.html">Apian的惊喜 <span class="nav-spot"></span></a>
+    <a href="Apian100%25_reason.html">Apian100%的原因 <span class="nav-spot"></span></a>
+    <a href="关于我们.html">关于我们 <span class="nav-spot"></span></a>
+    <a href="TDCT.html">TDCT <span class="nav-spot"></span></a>
+    <a href="v.html">Video <span class="nav-spot"></span></a>
+    <a href="其他.html">Music <span class="nav-spot"></span></a>
+</nav>
+
+<div class="glass" style="max-width:800px;">
+    <h2>私人备忘录（仅本机浏览器存储）</h2>
+    <textarea id="noteInput" placeholder="在此记录内容，失去焦点自动保存"></textarea>
+    <div class="btnBox">
+        <button id="saveBtn" class="btn">手动保存</button>
+        <button id="clearBtn" class="btn">清空全部笔记</button>
+    </div>
+</div>
+
+<script>
+    const input = document.getElementById("noteInput");
+    const key = "my-private-note";
+    window.onload = () => {
+        let saved = localStorage.getItem(key);
+        if (saved) input.value = saved;
+        input.addEventListener('focus', function() {
+            this.classList.add('glow-active');
+        });
+        input.addEventListener('blur', function() {
+            this.classList.remove('glow-active');
+            localStorage.setItem(key, this.value);
+        });
+    };
+    document.getElementById("saveBtn").onclick = () => {
+        localStorage.setItem(key, input.value);
+        alert("已保存");
+    };
+    document.getElementById("clearBtn").onclick = () => {
+        if (confirm("确定清空？数据无法恢复")) {
+            input.value = "";
+            localStorage.removeItem(key);
+            input.classList.remove('glow-active');
+        }
+    };
+</script>
+</body>
+</html>
