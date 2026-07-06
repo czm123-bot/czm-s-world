@@ -265,7 +265,7 @@
     enterBtn.addEventListener("click",function(e){
         e.preventDefault();
         e.stopPropagation();
-        localStorage.setItem('logged_in', 'true');
+        sessionStorage.setItem('logged_in', 'true');
         overlay.classList.add('active');
         transition.classList.add("active");
         const handler = function(e) {
