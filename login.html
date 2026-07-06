@@ -22,9 +22,18 @@
             transform:translate3d(0,0,0);
             background: linear-gradient(135deg, #eef2f6 0%, #e2e8f0 100%);
             transition: background 0.6s ease;
+            position:relative;
         }
-        body.transition-active {
-            background: rgba(20, 25, 35, 0.85);
+        .overlay{
+            position:fixed;
+            inset:0;
+            background:rgba(0,0,0,0);
+            pointer-events:none;
+            z-index:9998;
+            transition:background 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .overlay.active{
+            background:rgba(0,0,0,0.70);
         }
         .glass-transition{
             position:fixed;
@@ -44,10 +53,10 @@
             height:200px;
             border-radius:50%;
             background:rgba(255,255,255,0.15);
-            -webkit-backdrop-filter:var(--glass-blur);
-            backdrop-filter:var(--glass-blur);
-            border:var(--glass-border);
-            box-shadow:0 0 60px rgba(255,255,255,0.40), inset 0 0 40px rgba(255,255,255,0.10);
+            -webkit-backdrop-filter:blur(20px) saturate(180%);
+            backdrop-filter:blur(20px) saturate(180%);
+            border:1px solid rgba(255,255,255,0.50);
+            box-shadow:0 0 60px rgba(255,255,255,0.30), inset 0 0 40px rgba(255,255,255,0.10);
             transform:scale(0) translate(-50%,-50%) translate3d(0,0,0) rotate(0deg);
             opacity:0;
             will-change:transform, opacity;
@@ -57,7 +66,7 @@
             position:absolute;
             inset:-16px;
             border-radius:50%;
-            background:radial-gradient(circle at 35% 25%,rgba(255,255,255,0.25),transparent 30%);
+            background:radial-gradient(circle at 35% 25%,rgba(255,255,255,0.20),transparent 30%);
             filter:blur(10px);
         }
         .glass-transition .glass-circle::after{
@@ -68,11 +77,11 @@
             left:-70%;
             top:-70%;
             border-radius:50%;
-            background:conic-gradient(from 0deg,transparent,rgba(255,255,255,0.20),transparent,rgba(255,255,255,0.10),transparent);
+            background:conic-gradient(from 0deg,transparent,rgba(255,255,255,0.15),transparent,rgba(255,255,255,0.08),transparent);
             animation:glass-sweep 1.8s linear infinite;
         }
         .glass-transition.active .glass-circle{
-            animation:glass-expand 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            animation:glass-expand 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
         .glass-transition .glass-wipe{
             position:absolute;
@@ -81,13 +90,13 @@
             width:200vw;
             height:200vw;
             border-radius:50%;
-            background:radial-gradient(circle, rgba(255,255,255,0.25), rgba(255,255,255,0.08) 20%, transparent 38%);
+            background:radial-gradient(circle, rgba(255,255,255,0.20), rgba(255,255,255,0.06) 20%, transparent 38%);
             transform:translate(-50%,-50%) scale(0) translate3d(0,0,0);
             opacity:0;
             will-change:transform, opacity;
         }
         .glass-transition.active .glass-wipe{
-            animation:glass-wipe-expand 1.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            animation:glass-wipe-expand 1.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
         .glass-transition .glass-ripple{
             position:absolute;
@@ -96,7 +105,7 @@
             width:300px;
             height:300px;
             border-radius:50%;
-            background:radial-gradient(circle, rgba(255,255,255,0.15), transparent 50%);
+            background:radial-gradient(circle, rgba(255,255,255,0.12), transparent 50%);
             transform:translate(-50%,-50%) scale(0) rotate(0deg);
             opacity:0;
             will-change:transform, opacity;
@@ -104,27 +113,27 @@
             mix-blend-mode: overlay;
         }
         .glass-transition.active .glass-ripple{
-            animation:ripple-expand 2.0s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            animation:ripple-expand 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
 
         @keyframes glass-expand{
             0% { transform: scale(0) translate(-50%,-50%) translate3d(0,0,0) rotate(0deg); opacity:0; }
-            10% { transform: scale(1.2) translate(-50%,-50%) translate3d(0,0,0) rotate(10deg); opacity:1; }
-            30% { transform: scale(2) translate(-50%,-50%) translate3d(0,0,0) rotate(-5deg); opacity:1; }
-            60% { transform: scale(8) translate(-50%,-50%) translate3d(0,0,0) rotate(15deg); opacity:0.9; }
-            100% { transform: scale(18) translate(-50%,-50%) translate3d(0,0,0) rotate(20deg); opacity:0; }
+            12% { transform: scale(1.2) translate(-50%,-50%) translate3d(0,0,0) rotate(6deg); opacity:1; }
+            30% { transform: scale(2) translate(-50%,-50%) translate3d(0,0,0) rotate(-3deg); opacity:1; }
+            60% { transform: scale(6) translate(-50%,-50%) translate3d(0,0,0) rotate(8deg); opacity:0.9; }
+            100% { transform: scale(14) translate(-50%,-50%) translate3d(0,0,0) rotate(12deg); opacity:0; }
         }
         @keyframes glass-wipe-expand{
             0% { transform: translate(-50%,-50%) scale(0) translate3d(0,0,0); opacity:0; }
-            15% { transform: translate(-50%,-50%) scale(1.2) translate3d(0,0,0); opacity:0.8; }
-            40% { transform: translate(-50%,-50%) scale(2.5) translate3d(0,0,0); opacity:0.5; }
-            100% { transform: translate(-50%,-50%) scale(1.8) translate3d(0,0,0); opacity:0; }
+            15% { transform: translate(-50%,-50%) scale(1.2) translate3d(0,0,0); opacity:0.7; }
+            40% { transform: translate(-50%,-50%) scale(2.5) translate3d(0,0,0); opacity:0.4; }
+            100% { transform: translate(-50%,-50%) scale(1.6) translate3d(0,0,0); opacity:0; }
         }
         @keyframes ripple-expand{
             0% { transform: translate(-50%,-50%) scale(0) rotate(0deg); opacity:0; }
-            20% { transform: translate(-50%,-50%) scale(1.5) rotate(30deg); opacity:0.6; }
-            60% { transform: translate(-50%,-50%) scale(4) rotate(-20deg); opacity:0.3; }
-            100% { transform: translate(-50%,-50%) scale(8) rotate(45deg); opacity:0; }
+            20% { transform: translate(-50%,-50%) scale(1.5) rotate(20deg); opacity:0.5; }
+            60% { transform: translate(-50%,-50%) scale(3.5) rotate(-15deg); opacity:0.2; }
+            100% { transform: translate(-50%,-50%) scale(7) rotate(30deg); opacity:0; }
         }
         @keyframes glass-sweep{
             0% { transform: rotate(0deg); }
@@ -217,6 +226,7 @@
     </style>
 </head>
 <body>
+<div class="overlay" id="overlay"></div>
 <div class="login-card">
     <h2>欢迎进入站点</h2>
     <p>继续前往 TDCT 主页</p>
@@ -235,6 +245,7 @@
     const transition=document.getElementById("glassTransition");
     const enterBtn=document.getElementById("enterBtn");
     const lightSpot=enterBtn.querySelector(".light-spot");
+    const overlay=document.getElementById("overlay");
 
     enterBtn.addEventListener("mouseenter",()=>{
         lightSpot.style.opacity=0;
@@ -255,7 +266,7 @@
         e.preventDefault();
         e.stopPropagation();
         localStorage.setItem('logged_in', 'true');
-        document.body.classList.add('transition-active');
+        overlay.classList.add('active');
         transition.classList.add("active");
         const handler = function(e) {
             if (e.animationName === "glass-expand") {
