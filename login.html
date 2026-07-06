@@ -20,7 +20,7 @@
             -webkit-backface-visibility:hidden;
             backface-visibility:hidden;
             transform:translate3d(0,0,0);
-            background: linear-gradient(145deg, #dbe1e8 0%, #c9d2dd 100%);
+            background: linear-gradient(135deg, #eef2f6 0%, #e2e8f0 100%);
             transition: background 0.6s ease;
         }
         body.transition-active {
@@ -173,7 +173,7 @@
             padding:12px 10px;
             border-radius:40px;
             border:1px solid rgba(255,255,255,0.85);
-            background:rgba(230, 242, 255, 0.80);
+            background:rgba(210, 225, 240, 0.60);
             -webkit-backdrop-filter:var(--glass-blur);
             backdrop-filter:var(--glass-blur);
             color:#0f172a;
@@ -204,7 +204,7 @@
             opacity:1;
         }
         #enterBtn:hover{
-            background:rgba(216, 235, 255, 0.90);
+            background:rgba(200, 215, 230, 0.85);
             transform:translateY(-3px) scale(1.02);
             box-shadow:
                     0 12px 32px rgba(15, 23, 42, 0.10),
@@ -254,6 +254,7 @@
     enterBtn.addEventListener("click",function(e){
         e.preventDefault();
         e.stopPropagation();
+        localStorage.setItem('logged_in', 'true');
         document.body.classList.add('transition-active');
         transition.classList.add("active");
         const handler = function(e) {

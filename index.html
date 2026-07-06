@@ -58,6 +58,13 @@
             filter: blur(12px) !important;
         }
     </style>
+    <script>
+        (function() {
+            if (!localStorage.getItem('logged_in')) {
+                window.location.href = 'login.html';
+            }
+        })();
+    </script>
 </head>
 <body>
 <nav class="nav">
